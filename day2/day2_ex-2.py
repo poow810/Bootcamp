@@ -1,4 +1,4 @@
-small = []
+small = True
 green = []
 if small:
     if green:
