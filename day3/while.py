@@ -27,5 +27,14 @@ for letter in word:
         break
     print(letter)
 
-# range 함수
+# 연습문제
 
+number = int(input("정수 입력 :"))
+counts = 0
+for k in range(1, number+1):
+    if number % k == 0 :
+        counts+=1
+if counts == 2:
+    print(f'{number} is prime number!')
+else:
+    print(f'{number} is not prime number.')
