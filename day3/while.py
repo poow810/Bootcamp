@@ -30,11 +30,15 @@ for letter in word:
 # 연습문제
 
 number = int(input("정수 입력 :"))
-counts = 0
-for k in range(1, number+1):
+is_prime = True
+
+for k in range(2, number):
     if number % k == 0 :
-        counts+=1
-if counts == 2:
+        is_prime = False
+        break
+
+if is_prime:
     print(f'{number} is prime number!')
 else:
     print(f'{number} is not prime number.')
+
