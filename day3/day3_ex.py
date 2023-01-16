@@ -1,7 +1,7 @@
-# 5.6
+# 5.7
 Boat = 'Duck'
 Horse = 'Gourd'
 Train = 'Spitz'
-print("an English submarine 이름은 (%sy Mc%sface)로 지어졌다." %(Boat,Boat))
-print("an English submarine 이름은 (%sy Mc%sface)로 지어졌다." %(Horse, Horse))
-print("an English submarine 이름은 (%sy Mc%sface)로 지어졌다." %(Train, Train))
+print("an English submarine 이름은 ({}y Mc{}face)로 지어졌다." .format(Boat,Boat))
+print("an English submarine 이름은 ({}y Mc{}face)로 지어졌다." .format(Horse, Horse))
+print("an English submarine 이름은 ({}y Mc{}face)로 지어졌다." .format(Train, Train))
