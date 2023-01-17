@@ -13,4 +13,5 @@ print(f2e)
 # 8.4
 for k, v in ef2.items():
     print(k)
-    break
+    break       #break로 멈추는 방법 말고 첫번째만 얻는 방법?
+print(list(ef2.keys())[0])
