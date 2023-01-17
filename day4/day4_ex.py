@@ -1,10 +1,3 @@
-# 7.8
-surprise = ["Groucho", "Chico", "Harpo"]
-
-# 7.9
-surprise[-1] = surprise[-1].lower()
-print(surprise)
-surprise.reverse()
-print(surprise)
-surprise[0] = surprise[0].capitalize()
-print(surprise)
+# 7.10
+numbers_list = [number for number in range(10) if number % 2 ==0]
+print(numbers_list)
