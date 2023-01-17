@@ -5,3 +5,5 @@ for i in range(1, 6):
     year_list.append(i)
 years_list = year_list
 print(years_list)
+# 7.2
+print(years_list[3])
