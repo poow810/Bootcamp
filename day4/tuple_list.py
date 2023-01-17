@@ -1,30 +1,13 @@
-# list
-# shallow copy
-a = [1, 2, [5, 6]]
-b = a.copy()
-c = list(a)
-d = a[:]
-a[1] = -77          # immutable한 원소가 변경되면 복사본은 변경 x
-a[2][1] = '7'       # 리스트 자체의 원소가 변경되면 복사본들도 변경 = 얕은 복사
-print(a, b, c, d)       # 나머지 복사본들은 바뀌지 않음
+# list comprehension
+a_list = [i for i in range(1,11) if i % 2==1]    # 리스트 comprehension
+print(a_list)
 
-# deep copy
-import copy
-a = [1, 2, [5, 6]]
-b = copy.deepcopy(a)
-a[2][1] = 7
-print(a, b)         # 복사본은 바뀌지 않음
+b_list = (i for i in range(1,11) if i % 2==1)   # generator 객체 (튜플이 아님)
+print(b_list)
 
-primes = [2, 19, 3, 5, 7, 11]
-primes_cp = primes
-print(primes)
-print(primes_cp)
-primes[-1] = 'lunch time'
-print(primes)
-print(primes_cp)
-
-# mixed = [6, 4, 5, 'A+', 7, '트와이스', '8', 'b', '마마무'] # type error
-# mixed = ['6', '4', '5', 'A+', '7', '트와이스', '8', 'b', '마마무']
-# mixed.sort()
-# mixed.sort(reverse=True)
-# print(mixed)
+odd_list = []
+for i in range(1,11):
+    if i % 2 == 1:
+        odd_list.append(i)      # 원래 방식의 리스트 추가
+print(odd_list)
+# range 함수
