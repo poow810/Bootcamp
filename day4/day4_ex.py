@@ -7,3 +7,6 @@ years_list = year_list
 print(years_list)
 # 7.2
 print(years_list[3])
+
+# 7.3
+print(years_list[-1])
