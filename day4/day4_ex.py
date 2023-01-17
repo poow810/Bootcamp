@@ -1,12 +1,10 @@
-# 7.1
-year_list = [1980]
-for i in range(1, 6):
-    i=1980+int(i)
-    year_list.append(i)
-years_list = year_list
-print(years_list)
-# 7.2
-print(years_list[3])
+# 7.8
+surprise = ["Groucho", "Chico", "Harpo"]
 
-# 7.3
-print(years_list[-1])
+# 7.9
+surprise[-1] = surprise[-1].lower()
+print(surprise)
+surprise.reverse()
+print(surprise)
+surprise[0] = surprise[0].capitalize()
+print(surprise)
