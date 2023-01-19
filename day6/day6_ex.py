@@ -1,8 +1,8 @@
-# 9-1
-def good():
-    return ['Harry', 'Ron', 'Hermione']
-
-print(good())
+# # 9-1
+# def good():
+#     return ['Harry', 'Ron', 'Hermione']
+#
+# print(good())
 
 # 9-2
 # 제네레이트 컴프리헨션
@@ -24,3 +24,17 @@ print(good())
 #     if count==3:
 #        print(i)
 
+# 9-3
+def test(func):
+    def new_function():
+        try:
+            print("start")
+            func()
+        finally:
+            print("end")
+    return new_function()
+
+
+@test
+def start():
+    print('함수 호출')

@@ -11,21 +11,21 @@
 #
 #
 # # 데커레이터
-# def document_it(func):
-#     def new_function(*args, **kwargs):
-#         print('Running function:', func.__name__)
-#         print('Positional arguments:', args)
-#         print('Keyword arguments:', kwargs)
-#         result = func(*args, **kwargs)
-#         print('Result:', result)
-#         return result
-#     return new_function
+def document_it(func):
+    def new_function(*args, **kwargs):
+        print('Running function:', func.__name__)
+        print('Positional arguments:', args)
+        print('Keyword arguments:', kwargs)
+        result = func(*args, **kwargs)
+        print('Result:', result)
+        return result
+    return new_function
+
+@document_it
+def add_ints(a, b):
+    return a+b
 #
-# @document_it
-# def add_ints(a, b):
-#     return a+b
-#
-# print(add_ints(3,5))
+print(add_ints(3,5))
 #
 #
 # # 재귀 함수
