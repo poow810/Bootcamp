@@ -14,7 +14,7 @@
 # p1= Pokemon()
 # p2= Pokemon()
 # print(p1, p2)
-
+#
 class Pokemon:
     def __init__(self, name, owner, skills):     # 객체 생성 시 동작
         self.name = name
@@ -35,3 +35,10 @@ print(f"{p2.owner}의 포켓몬은 {p2.name}입니다.")
 
 p2.info()
 p1.info()
+
+class Pikachu(Pokemon):     # inheritance
+    pass
+
+
+pi1 = Pikachu('피카츄', '덴트', '번개')
+pi1.info()
