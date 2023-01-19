@@ -1,24 +1,19 @@
-# debugging
-
-def document_info(func):
-    def new_function(*args, **kwargs):
-        print('Running function:', func.__name__)
-        print('Positional argument:', args)
-        print('Keyword arguments:', kwargs)
-        result = func(*args, **kwargs)
-        print('Result:', result)
-        return result
-    return new_function
-
-@document_info
-def sub_int(x, y):
-    return x - y
+# namespace
+g = 1       # 전역 변수
+def print_global():
+    # g = 1     # 지역 변수
+    print(g)
 
 
-@document_info
-def squares(n):
-    return n * n
+def change_print_global():
+    global g        # 전역 변수 선언
+    print(g)
+    g = 2
+    print(g)
 
 
-print(squares(5))
-print(sub_int(7, 3))
+change_print_global()
+print_global()
+print(g)
+print(globals())
+print(__name__)
