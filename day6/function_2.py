@@ -1,16 +1,20 @@
-# Generator
-def a():        # 이전 상태 기억 x
-    yield 1
-    yield 2
-    yield 3
+# debugging
 
-def b():        # normal function
-    return 1    # stop
-    return 2
-    return 3
+def document_info(func):
+    def new_function(*args, **kwargs):
+        print('Running function:', func.__name__)
+        print('Positional argument:', args)
+        print('Keyword arguments:', kwargs)
+        result = func(*args, **kwargs)
+        print('Result:', result)
+        return result
+    return new_function
 
-print(a(), b())
-c = a()
-for i in c:
-    print(i)
 
+def sub_int(x, y):
+    return x - y
+
+print(sub_int(5, 3))
+info_sub_int = document_info(sub_int)
+r = info_sub_int(7, 3)
+print(r)
