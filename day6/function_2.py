@@ -10,11 +10,15 @@ def document_info(func):
         return result
     return new_function
 
-
+@document_info
 def sub_int(x, y):
     return x - y
 
-print(sub_int(5, 3))
-info_sub_int = document_info(sub_int)
-r = info_sub_int(7, 3)
-print(r)
+
+@document_info
+def squares(n):
+    return n * n
+
+
+print(squares(5))
+print(sub_int(7, 3))
