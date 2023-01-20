@@ -39,20 +39,36 @@
 # hydrogen = el_dict.keys()
 
 # 10.6
+# class Element():
+#     def __init__(self, name, symbol, number):
+#         self.name = name
+#         self.symbol = symbol
+#         self.number = number
+#
+#
+#     def __str__(self):
+#         return f'{self.name} {self.symbol} {self.number}'
+#
+#
+# # hydrogen = Element('Hydrogen', 'H', 1)
+# # hydrogen.dump()
+#
+# # 10.7
+# hydrogen = Element('Hydrogen', 'H', 1)
+# print(hydrogen)
+
+
+# 10.8
 class Element():
     def __init__(self, name, symbol, number):
-        self.name = name
-        self.symbol = symbol
-        self.number = number
+        self.__name = name
+        self.__symbol = symbol
+        self.__number = number
+    @property
+    def dump(self):
+        return self.__name, self.__symbol, self.__number
 
 
-    def __str__(self):
-        return f'{self.name} {self.symbol} {self.number}'
-
-
-# hydrogen = Element('Hydrogen', 'H', 1)
-# hydrogen.dump()
-
-# 10.7
 hydrogen = Element('Hydrogen', 'H', 1)
-print(hydrogen)
+print(hydrogen.dump)
+
