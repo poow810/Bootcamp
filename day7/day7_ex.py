@@ -20,3 +20,14 @@ class Thing3():
 a = Thing3()
 a.letters = 'abc'
 print(a.letters)
+
+# 10.4
+class Element():
+    def __init__(self, name, symbol, number):
+        self.name = name
+        self.symbol = symbol
+        self.number = number
+
+
+element = Element('Hydrogen', 'H', 1)
+print(element.name, element.symbol, element.number)
