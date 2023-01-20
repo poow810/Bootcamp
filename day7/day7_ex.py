@@ -12,3 +12,11 @@ class Thing2():
     letters = 'abc'
 
 print(Thing2.letters)
+
+# 10.3
+class Thing3():
+    pass
+
+a = Thing3()
+a.letters = 'abc'
+print(a.letters)
