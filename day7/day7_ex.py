@@ -58,17 +58,44 @@
 # print(hydrogen)
 
 
-# 10.8
-class Element():
-    def __init__(self, name, symbol, number):
-        self.__name = name
-        self.__symbol = symbol
-        self.__number = number
-    @property
-    def dump(self):
-        return self.__name, self.__symbol, self.__number
+# # 10.8
+# class Element():
+#     def __init__(self, name, symbol, number):
+#         self.__name = name
+#         self.__symbol = symbol
+#         self.__number = number
+#     @property
+#     def dump(self):
+#         return self.__name, self.__symbol, self.__number
+#
+#
+# hydrogen = Element('Hydrogen', 'H', 1)
+# print(hydrogen.dump)
+
+# 10.9
+class Bear():
+    def __init__(self, name):
+        self.name = name
+
+    def eats(self):
+        return f"'{self.name}'(Bear)"
 
 
-hydrogen = Element('Hydrogen', 'H', 1)
-print(hydrogen.dump)
 
+class Rabbit(Bear):
+    def eats(self):
+        return f"'{self.name}'(Rabbit)"
+
+
+
+class Octothorpe(Bear):
+    def eats(self):
+        return f"'{self.name}'(Octothorpe)"
+
+
+bear = Bear('berries')
+rabbit = Rabbit('clover')
+octothorpe = Octothorpe('campers')
+print(bear.eats())
+print(rabbit.eats())
+print(octothorpe.eats())
