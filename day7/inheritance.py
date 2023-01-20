@@ -30,6 +30,8 @@
 # print(person.name)
 # print(doctor.name)
 # print(lawyer.name)
+import math
+
 
 # add method
 # class Car():
@@ -117,3 +119,99 @@ class Minny(Horse, Donkey):
 
 m1 = Mule()
 print(m1.says())
+
+
+class PrettyMixin:
+    def time_print(self):
+        import datetime
+        print(datetime.date.today())
+    def dump(self):
+        import pprint
+        pprint.pprint(vars(self))
+class Thing(PrettyMixin):
+    pass
+
+
+t = Thing()
+t.time_print()
+t.name = "Nyarlathotep"
+t.feature = "ichor"
+t.age = "eldritch"
+t.dump()
+
+# 좀이따 다시 해보기
+# class Duck():
+#     def __init__(self, input_name):
+#         self.hidden_name = input_name
+#
+    @classmethod
+    def test():
+        pass
+
+
+    @staticmethod
+    def ace():
+        pass
+
+
+#     @property
+#     def get_name(self):
+#         print('inside the getter')
+#         return self.hidden_name
+#
+#     @name.setter
+#     def set_name(self, input_name):
+#         print('inside the setter')
+#         self.hidden_name = input_name
+
+don = Duck('Donald')
+print(don.name)         # 클래스.name은 쓸 수 없음
+# don = Duck('Donald')
+# don.get_name()
+
+# don = Duck('Donald')
+# print(don.color, Duck.color)
+# don.color = 'blue'
+# print(don.color, Duck.color)
+# Duck.color = 'green'
+# print(don.color, Duck.color)
+# d2 = Duck('Induk')
+
+
+
+class Shape:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    def get_area(self):
+        print("도형의 면적을 출력합니다")
+
+
+class Circle(Shape):
+    def __init__(self, x, y, radius, height):
+        super().__init__(x, y, radius)
+        self.radius = height
+
+
+    def get_area(self):
+        return math.pi * self.radius * self.radius * self.height
+
+
+class Rectangle(Shape):
+    def __init__(self, x, y, width, length):
+        super().__init__(x, y)
+        self.width = width
+        self.length = length
+
+    def get_area(self):
+        return super().get_area() * self.height
+
+
+c1 = Circle(100, 100, 10.0)
+c2 = Circle(50, 50, 2.0)
+r1 = Rectangle(100, 2)
+
+print(f'사각형의 좌표는 x : {r1.x}, y = {r1.y}이고 넓이는 {r1.get_area()}입니다')
+
+
+
