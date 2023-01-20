@@ -46,9 +46,13 @@ class Element():
         self.number = number
 
 
-    def dump(self):
-        print(self.name, self.symbol, self.number)
+    def __str__(self):
+        return f'{self.name} {self.symbol} {self.number}'
 
 
+# hydrogen = Element('Hydrogen', 'H', 1)
+# hydrogen.dump()
+
+# 10.7
 hydrogen = Element('Hydrogen', 'H', 1)
-hydrogen.dump()
+print(hydrogen)
