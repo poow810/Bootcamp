@@ -31,3 +31,7 @@ class Element():
 
 element = Element('Hydrogen', 'H', 1)
 print(element.name, element.symbol, element.number)
+
+# 10.5
+el_dict = {'name':'Hydrogen', 'symbol':'H', 'number':1}
+hydrogen = el_dict.keys()
