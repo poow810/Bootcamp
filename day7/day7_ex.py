@@ -99,3 +99,36 @@ octothorpe = Octothorpe('campers')
 print(bear.eats())
 print(rabbit.eats())
 print(octothorpe.eats())
+
+
+# 10.10
+class Robot():
+    def __init__(self, name, laser, claw, smartphone):
+        self.name = name
+        self.laser = laser.does()
+        self.claw = claw.does()
+        self.smartphone = smartphone.does()
+
+
+    def does(self):
+        print(f'{self.laser} {self.claw} {self.smartphone}')
+
+
+class Laser(Robot):
+    def does(self):
+        return f"'{self.name}'(Laser)"
+
+
+
+class Claw(Robot):
+    def does(self):
+        return f"'{self.name}'(Claw)"
+
+
+class SmartPhone(Robot):
+    def does(self):
+        return f"'{self.name}'(Smart Phone)"
+
+laser = Laser('disintegrate')
+claw = Claw('crush')
+smartphone = SmartPhone('ring')
