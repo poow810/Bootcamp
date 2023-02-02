@@ -1,4 +1,6 @@
 # 중복 코드 제거, getter setter
+# pokemon game v0.2
+# 중복코드 제거, getter setter
 class Pokemon:
     def __init__(self, owner, skills):  # 객체 생성 시 동작
         self.hidden_owner = owner
@@ -15,6 +17,8 @@ class Pokemon:
 
     def info(self):
         print(f"{self.get_owner}의 포켓몬이 사용 가능한 스킬입니다.")
+    def info(self):
+        print(f"{self.get_owner()}의 포켓몬이 사용 가능한 스킬입니다.")
         for i in range(len(self.skills)):
             print(f'{i + 1} : {self.skills[i]}')
 
@@ -33,6 +37,8 @@ class Pikachu(Pokemon):
 
         def attack(self, idx):  # override
             print(f'{self.owner}의 {self.name}가 {self.skills[idx]} 공격 시전')
+    def attack(self, idx):  # override
+         print(f'{self.owner}의 {self.name}가 {self.skills[idx]} 공격 시전')
 
 
 class Ggoboogi(Pokemon):
@@ -42,6 +48,7 @@ class Ggoboogi(Pokemon):
         print(f"{self.name}")
 
     def attack(self, idx):  # override
+        print(f'{self.owner}의 {self.name}가 {self.skills[idx]} 공격 시전')
         print(f'{self.owner}의 {self.name}가 {self.skills[idx]} 공격 시전')
 
     def swim(self):
@@ -56,6 +63,7 @@ class Pairi(Pokemon):
 
     def attack(self, idx):  # override
         print(f'{self.owner}의 {self.name}가 {self.skills[idx]} 공격 시전')
+        print(f'{self.owner}의 {self.name}가 {self.skills[idx]} 공격 시전')
 
 
 while True:
@@ -65,17 +73,13 @@ while True:
         break
     elif menu == '1':
         pokemon = input('1) 피카츄 2) 꼬부기 3) 파이리 : ')
+        n = input('플레이어 이름 입력 : ')
+        s = input('사용 가능한 기술 입력(/로 구분하여 입력) : ')
         if pokemon == '1':
-            n = input('플레이어 이름 입력 : ')
-            s = input('사용 가능한 기술 입력(/로 구분하여 입력) : ')
             p = Pikachu(n, s)
         elif pokemon == '2':
-            n = input('플레이어 이름 입력 : ')
-            s = input('사용 가능한 기술 입력(/로 구분하여 입력) : ')
             p = Ggoboogi(n, s)
         elif pokemon == '3':
-            n = input('플레이어 이름 입력 : ')
-            s = input('사용 가능한 기술 입력(/로 구분하여 입력) : ')
             p = Pairi(n, s)
         else:
             print('메뉴에서 골라 주세요')
