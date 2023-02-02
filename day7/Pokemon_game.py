@@ -16,8 +16,6 @@ class Pokemon:
     owner = property(get_owner, set_owner)
 
     def info(self):
-        print(f"{self.get_owner}의 포켓몬이 사용 가능한 스킬입니다.")
-    def info(self):
         print(f"{self.get_owner()}의 포켓몬이 사용 가능한 스킬입니다.")
         for i in range(len(self.skills)):
             print(f'{i + 1} : {self.skills[i]}')
@@ -37,8 +35,8 @@ class Pikachu(Pokemon):
 
         def attack(self, idx):  # override
             print(f'{self.owner}의 {self.name}가 {self.skills[idx]} 공격 시전')
-    def attack(self, idx):  # override
-         print(f'{self.owner}의 {self.name}가 {self.skills[idx]} 공격 시전')
+
+
 
 
 class Ggoboogi(Pokemon):
@@ -48,7 +46,6 @@ class Ggoboogi(Pokemon):
         print(f"{self.name}")
 
     def attack(self, idx):  # override
-        print(f'{self.owner}의 {self.name}가 {self.skills[idx]} 공격 시전')
         print(f'{self.owner}의 {self.name}가 {self.skills[idx]} 공격 시전')
 
     def swim(self):
@@ -62,7 +59,6 @@ class Pairi(Pokemon):
         print(f"{self.name}")
 
     def attack(self, idx):  # override
-        print(f'{self.owner}의 {self.name}가 {self.skills[idx]} 공격 시전')
         print(f'{self.owner}의 {self.name}가 {self.skills[idx]} 공격 시전')
 
 
