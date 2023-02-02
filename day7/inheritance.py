@@ -1,3 +1,7 @@
+import os
+
+currentpath = os.getcwd()
+print(currentpath)
 # # inheritance
 # class Car():
 #     def exclaim(self):
@@ -145,33 +149,33 @@ t.dump()
 
 
 # 좀이따 다시 해보기
-# class Duck():
-#     def __init__(self, input_name):
-#         self.hidden_name = input_name
-#
+class Duck():
+    def __init__(self, input_name):
+        self.hidden_name = input_name
 
-#     @property
-#     def get_name(self):
-#         print('inside the getter')
-#         return self.hidden_name
-#
-#     @name.setter
-#     def set_name(self, input_name):
-#         print('inside the setter')
-#         self.hidden_name = input_name
 
-# don = Duck('Donald')
-# print(don.name)         # 클래스.name은 쓸 수 없음
-# don = Duck('Donald')
-# don.get_name()
+    @property
+    def get_name(self):
+        print('inside the getter')
+        return self.hidden_name
 
-# don = Duck('Donald')
-# print(don.color, Duck.color)
-# don.color = 'blue'
-# print(don.color, Duck.color)
-# Duck.color = 'green'
-# print(don.color, Duck.color)
-# d2 = Duck('Induk')
+    @name.setter
+    def set_name(self, input_name):
+        print('inside the setter')
+        self.hidden_name = input_name
+
+don = Duck('Donald')
+print(don.name)         # 클래스.name은 쓸 수 없음
+don = Duck('Donald')
+don.get_name()
+
+don = Duck('Donald')
+print(don.color, Duck.color)
+don.color = 'blue'
+print(don.color, Duck.color)
+Duck.color = 'green'
+print(don.color, Duck.color)
+d2 = Duck('Induk')
 
 
 class Shape:
