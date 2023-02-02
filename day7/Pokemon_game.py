@@ -1,22 +1,24 @@
-# 중복 코드 제거, getter setter
-# pokemon game v0.2
-# 중복코드 제거, getter setter
+# pokemon game v0.4
+# getter setter -> property -> decorator
+# __hiddenfield
 class Pokemon:
     def __init__(self, owner, skills):  # 객체 생성 시 동작
-        self.hidden_owner = owner
+        self.__hidden_owner = owner     # like private
         self.skills = skills.split('/')
         print(f"포켓몬 생성됨", end=" : ")
 
-    def get_owner(self):
-        return self.hidden_owner
+    @property
+    def owner(self):
+        return self.__hidden_owner
 
-    def set_owner(self, owner):
-        self.hidden_owner = owner
+    @owner.setter
+    def owner(self, owner):
+        self.__hidden_owner = owner
 
-    owner = property(get_owner, set_owner)
+    #owner = property(get_owner, set_owner)
 
     def info(self):
-        print(f"{self.get_owner()}의 포켓몬이 사용 가능한 스킬입니다.")
+        print(f"{self.owner}의 포켓몬이 사용 가능한 스킬입니다.")
         for i in range(len(self.skills)):
             print(f'{i + 1} : {self.skills[i]}')
 
