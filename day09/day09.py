@@ -1,77 +1,54 @@
-def insert_data(index, pokemon):
+## 함수 선언 부분 ##
+def print_poly(px):
     """
-    선형 리스트 index 위치에 data 삽입
-    :param index: int
-    :param pokemon: str
-    :return: void
+    다항식을 포맷에 맞게 출력하는 함수
+    :param px: 계수를 가진 list
+    :return: 다항식 문자열
     """
-    if index < 0 or index > len(pokemons):
-        print("Out of range!")
-        return
+    term = len(px) - 1  # 최고차항 숫자 = 배열길이-1
+    poly_str = "P(x) = "
 
-    pokemons.append(None)  # 빈칸 추가
-
-    for i in range(len(pokemons) - 1, index, -1):
-        pokemons[i] = pokemons[i - 1]
-        pokemons[i - 1] = None
-
-    pokemons[index] = pokemon  # 지정한 위치에 친구 추가
-
-
-def delete_data(index):
-    """
-    선형 리스트 index 위치의 원소 삭제
-    :param index: int
-    :return: void
-    """
-    if index < 0 or index > len(pokemons):
-        print("데이터를 삭제할 범위를 벗어났습니다.")
-        return
-
-    pokemons[index] = None  # 데이터 삭제
-    len_pokemons = len(pokemons)
-
-    for i in range(index + 1, len_pokemons):
-        pokemons[i - 1] = pokemons[i]
-        pokemons[i] = None
-
-    pokemons.pop()
-
-
-def add_data(pokemon):
-    """
-    선형 리스트 맨 뒤에 원소 삽입
-    :param pokemon: str
-    :return:
-    """
-    pokemons.append(None)
-    pokemon_len = len(pokemons)
-    pokemons[len(pokemons) - 1] = pokemon
-
-
-pokemons = []
-menu = -1
-if __name__ == "__main__":
-    while True:
-
-        menu = input("선택하세요(1: 추가, 2: 삽입, 3: 삭제, 4: 종료)--> ")
-
-        if menu == '1':
-            data = input("추가할 데이터--> ")
-            add_data(data)
-            print(pokemons)
-        elif menu == '2':
-            pos = int(input("삽입할 위치--> "))
-            data = input("추가할 데이터--> ")
-            insert_data(pos, data)
-            print(pokemons)
-        elif menu == '3':
-            pos = int(input("삭제할 위치--> "))
-            delete_data(pos)
-            print(pokemons)
-        elif menu == '4':
-            print(pokemons)
-            break
-        else:
-            print("1~4 중 하나를 입력하세요.")
+    for i in range(len(px)):
+        coef = px[i]  # 계수
+        if i > 0 and coef > 0:
+            poly_str = poly_str + "+"
+        elif coef == 0:
+            term = term - 1
             continue
+
+        poly_str = poly_str + f'{coef}x^{term} '
+        term = term - 1
+
+    return poly_str
+
+
+def calc_poly(x_val, px):
+    """
+    다항식의 산술연산을 계산하는 함수
+    :param x_val: x값 integer
+    :param px: 계수를 원소로 가지고 있는 list
+    :return: 다항식의 계산 결과 값
+    """
+    ret_value = 0
+    term = len(px) - 1  # 최고차항 숫자 = 배열길이-1
+
+    for i in range(len(px)):
+        coef = px[i]  # 계수
+        ret_value = ret_value + coef * x_value ** term
+        term = term - 1
+
+    return ret_value
+
+
+## 전역 변수 선언 부분 ##
+px = [3, -4, 0, 6]  # = 7x^3 -4x^2 +0x^1 +5x^0
+
+## 메인 코드 부분 ##
+if __name__ == "__main__":
+    print(print_poly(px))
+
+    x_value = int(input("X 값-->"))
+
+    print(calc_poly(x_value, px))
+
+
