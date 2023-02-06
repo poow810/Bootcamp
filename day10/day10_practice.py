@@ -1,76 +1,44 @@
-import math
-import random
-
-
-class Node():
+class Node2():
     def __init__(self):
+        self.plink = None  # 앞쪽 링크
         self.data = None
-        self.link = None
+        self.nlink = None  # 뒤쪽 링크
 
 
-def printStore(first):
-    current = first
-    if current == None:
+def printNodes(start):
+    current = start
+    if current.nlink == None:
         return
-
-    while current.link != head:
-        current = current.link
-        x, y = current.data[1:]
-        print(current.data[0], "편의점, 거리 : ", math.sqrt(x * x + y * y))
-
-
-def makeStoreList(store):
-    global head, current, pre, storeList
-
-    node = Node()
-    node.data = store
-    storeList.append(node)
-
-    if head == Node:
-        head = node
-        node.link = head
-        return
-    nodeX, nodeY = node.data[1:]
-    node1 = math.sqrt(nodeX * nodeX + nodeY * nodeY)
-    headX, headY = head.data[1:]
-    node2 = math.sqrt(headX * headX + headY * headY)
-
-    if node2 > node1:  # 새 노드가 헤드보다 작을 경우( 앞에 위치 )
-        node.link = head
-        last = head
-        while last.link != head:
-            last = last.link
-        last.link = node
-        head = node
-        return
-
-    current = head  # 중간 노드로 삽입하는 경우
-    while current.link != head:
-        pre = current
-        current = current.link
-        curX, curY = current.data[1:]
-        node3 = math.sqrt(curX * curX + curY * curY)
-        if node3 > node1:  # 새 노드가 현재 노드보다 작을 경우
-            pre.link = node
-            node.link = current
-            return
-
-    current.link = node  # 가장 커서 맨 뒤에 노드 삽입
-    node.link = head
+    print("정방향 --> ", end=' ')
+    print(current.data, end=' ')
+    while current.nlink != None:
+        current = current.nlink
+        print(current.data, end=' ')
+    print()
+    print("역방향 --> ", end=' ')
+    print(current.data, end=' ')
+    while current.plink != None:
+        current = current.plink
+        print(current.data, end=' ')
 
 
+memory = []
 head, current, pre = None, None, None
-storeList = list()
+dataArray = ["다현", "정연", "쯔위", "사나", "지효"]
 
 if __name__ == "__main__":
-    catalog = []
-    storeName = 'A'
-    for _ in range(10):
-        store = (storeName, random.randint(1, 100), random.randint(1, 100))
-        catalog.append(store)
-        storeName = chr(ord(storeName) + 1)  # store이름을 하나씩 변경하는 함수
 
-    for store in catalog:
-        makeStoreList(store)
+    node = Node2()  # 첫 번째 노드
+    node.data = dataArray[0]
+    head = node
+    memory.append(node)
 
-    printStore(head)
+    for data in dataArray[1:]:  # 두 번째 이후 노드
+        pre = node
+        node = Node2()
+        node.data = data
+        pre.nlink = node
+        node.plink = pre
+        memory.append(node)
+
+    printNodes(head)
