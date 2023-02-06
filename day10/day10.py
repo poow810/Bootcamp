@@ -6,7 +6,7 @@ class Node:
 
 def print_nodes(start):
     current = start
-    if current == None :
+    if current == None:
         return
     print(current.data, end=' ')
     while current.link != start:
@@ -47,23 +47,23 @@ def delete_nodes(delete_data):
     global head, current, pre
 
     if head.data == delete_data:
-        print('첫 번째 노드 삭제 완료')
         current = head
         head = head.link
+        last = head
+        while last.link != current:
+            last = last.link
+        last.link = head
         del current
         return
 
     current = head
-    while current.link != None:
+    while current.link != head:
         pre = current
         current = current.link
         if current.data == delete_data:
-            print('중간 노드 삭제 완료')
             pre.link = current.link
             del current
             return
-
-    print('삭제할 노드를 찾지 못함')
 
 
 def find_nodes(find_data):
@@ -73,7 +73,7 @@ def find_nodes(find_data):
     if current.data == find_data:
         return current
 
-    while current.link != None:
+    while current.link != head:
         current = current.link
         if current.data == find_data:
             return current
@@ -81,9 +81,18 @@ def find_nodes(find_data):
     return Node(None)
 
 
+def is_find(find_data):
+    """
+
+    :return: 연결 리스트안에서 원소가 존재하면 True리턴 아니면 False
+    :param find_data: 찾고자 하는 원소, str
+    """
+    global head, current, pre
+
+
+
 head, current, pre = None, None, None
 data_array = ["피카츄", "라이츄", "꼬부기", "파이리", "이상해"]
-
 
 if __name__ == "__main__":
     node = Node(data_array[0])
@@ -96,10 +105,20 @@ if __name__ == "__main__":
         pre.link = node
         node.link = head
 
-    print_nodes(head)
-    insert_nodes("피카츄", "잠만보")
-    print_nodes(head)
-    insert_nodes("파이리", "어니부기")
-    print_nodes(head)
-    insert_nodes("성윤모", "거북왕")
-    print_nodes(head)
+    print(find_nodes('꼬부기').data)
+
+    # print_nodes(head)
+    # delete_nodes("피카츄")
+    # print_nodes(head)
+    # delete_nodes("파이리")
+    # print_nodes(head)
+    # delete_nodes("어니부기")
+    # print_nodes(head)
+
+    # print_nodes(head)
+    # insert_nodes("피카츄", "잠만보")
+    # print_nodes(head)
+    # insert_nodes("파이리", "어니부기")
+    # print_nodes(head)
+    # insert_nodes("성윤모", "거북왕")
+    # print_nodes(head)
