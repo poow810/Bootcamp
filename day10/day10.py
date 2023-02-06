@@ -1,3 +1,6 @@
+import random
+
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -89,23 +92,103 @@ def is_find(find_data):
     """
     global head, current, pre
 
+    current = head
+    if current.data == find_data:
+        return True
+
+    while current.link != head:
+        current = current.link
+        if current.data == find_data:
+            return True
+
+    return False
+
+
+def count_odd_even():
+    global head, current
+
+    even, odd = 0, 0
+
+    current = head
+    while True:
+        if current.data % 2 == 0:
+            even = even + 1
+        else:
+            odd = odd + 1
+        if current.link == head:
+            break
+        current = current.link
+
+    return odd, even
+
+
+def count_plus_minus():
+    global head, current
+
+    plus, minus, zero = 0, 0, 0
+
+    current = head
+    while True:
+        if current.data > 0:
+            plus = plus + 1
+        elif current.data < 0:
+            minus = minus + 1
+        else:
+            zero = zero + 1
+        if current.link == head:
+            break
+        current = current.link
+
+    return plus, minus, zero
+
+
+def makeSquareNumber(odd, even):
+    if odd > even:
+        remainder = 1
+    else:
+        remainder = 0
+
+    current = head
+    while True:
+        if current.data % 2 == remainder:
+            current.data = current.data * current.data
+        if current.link == head:
+            break
+        current = current.link
+
+
+def makeSignToggle():
+    current = head
+    while True:
+        current.data = current.data * -1
+        if current.link == head:
+            break
+        current = current.link
 
 
 head, current, pre = None, None, None
-data_array = ["피카츄", "라이츄", "꼬부기", "파이리", "이상해"]
+data_array = []
 
 if __name__ == "__main__":
-    node = Node(data_array[0])
-    head = node
-    node.link = head
+    for _ in range(7):
+        data_array.append(random.randint(-10, 10))
 
-    for data in data_array[1:]:
-        pre = node
-        node = Node(data)
-        pre.link = node
+        node = Node(data_array[0])
+        head = node
         node.link = head
 
-    print(find_nodes('꼬부기').data)
+        for data in data_array[1:]:
+            pre = node
+            node = Node(data)
+            pre.link = node
+            node.link = head
+
+    print_nodes(head)
+    plus_minus_zero = count_plus_minus()
+    print(f'+ : {plus_minus_zero[0]}, - : {plus_minus_zero[1]}, 0 : {plus_minus_zero[2]}')
+    # makeSquareNumber(odd_even[0], odd_even[1])
+    makeSignToggle()
+    print_nodes(head)
 
     # print_nodes(head)
     # delete_nodes("피카츄")
