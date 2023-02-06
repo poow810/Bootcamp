@@ -1,11 +1,11 @@
-# 함수 선언 부분
-class Node:
-    def __init__(self, data):
-        self.data = data
+## 클래스와 함수 선언 부분 ##
+class Node():
+    def __init__(self):
+        self.data = None
         self.link = None
 
 
-def print_nodes(start):
+def printNodes(start):
     current = start
     if current == None:
         return
@@ -16,93 +16,45 @@ def print_nodes(start):
     print()
 
 
-def insert_nodes(find_data, insert_data):
-    global head, current, pre
+def makeSimpleLinkedList(nameHeight):
+    global memory, head, current, pre
+    printNodes(head)
 
-    if head.data == find_data:  # 첫 번째 노드 삽입
-        node = Node(insert_data)
+    node = Node()
+    node.data = nameHeight
+    memory.append(node)
+    if head == None:  # 첫 번째 노드일 때
+        head = node
+        return
+
+    if head.data[1] > nameHeight[1]:  # 첫 번째 노드보다 작을 때
         node.link = head
         head = node
         return
 
+    # 중간 노드로 삽입하는 경우
     current = head
-    while current.link != None:  # 중간 노드 삽입
+    while current.link != None:
         pre = current
         current = current.link
-        if current.data == find_data:
-            node = Node(find_data)
-            node.link = current
+        if current.data[1] > nameHeight[1]:
             pre.link = node
+            node.link = current
             return
 
-
-    node = Node(insert_data)  # 마지막 노드 삽입
+    # 삽입하는 노드가 가장 큰 경우
     current.link = node
 
-def delete_node(delete_data):
-    global memory, head, current, pre
 
-    if head.data == delete_data:
-        print("첫 노드가 삭제됨")
-        current = head
-        head = head.link
-        del current
-        return
-
-    current = head
-    while current.link != None:
-        pre = current
-        current = current.link
-        if current.data == delete_data:
-            print("중간 노드가 삭제됨")
-            pre.link = current.link
-            del current
-            return
-
-    print("삭제된 노드가 없음")
-    # 삭제할 데이터를 못찾는 경우에 함수 종료
-
-
-def find_nodes(find_data):
-    global memory, head, current, pre
-    current = head
-    if current.data == find_data:
-        return current
-
-    while current.link != None:
-        current = current.link
-        if current.data == find_data:
-            return current
-
-    return Node(None)
-
-
+## 전역 변수 선언 부분 ##
 memory = []
 head, current, pre = None, None, None
-data_array = ["피카츄", "라이츄", "꼬부기", "파이리", "이상해씨"]
+dataArray = [["지민", 180], ["정국", 177], ["뷔", 183], ["슈가", 175], ["진", 179]]
 
-# 메인 코드 부분
+## 메인 코드 부분 ##
 if __name__ == "__main__":
-    node = Node(data_array[0])
-    head = node
 
-    for data in data_array[1:]:
-        pre = node
-        node = Node(data)
-        pre.link = node
+    for data in dataArray:
+        makeSimpleLinkedList(data)
 
-    print_nodes(head)
-    insert_nodes("피카츄", "잠만보")
-    print_nodes(head)
-    insert_nodes("파이리", "어니부기")
-    print_nodes(head)
-    insert_nodes("성윤모", "거북왕")
-    print_nodes(head)
-    delete_node("잠만보")
-    print_nodes(head)
-    delete_node("어니부기")
-    print_nodes(head)
-    delete_node("강찬석")
-    print_nodes(head)
-    print(find_nodes("파이리").data)        # return을 node객체로 받았기 때문에
-    print(find_nodes("박민석").data)        # .data로 출력 방식을 설정 해주어야함
+    printNodes(head)
