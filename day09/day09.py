@@ -1,7 +1,7 @@
 # 함수 선언 부분
 class Node:
     def __init__(self):
-        self.data = None
+        self.data = data
         self.link = None
 
 
@@ -9,12 +9,11 @@ def print_nodes(start):
     current = start
     if current == None:
         return
-    print(current.add, end =' ')
+    print(current.add, end=' ')
     while current.link != None:
         current = current.link
-        print(current.add, end =' ')
+        print(current.add, end=' ')
     print()
-
 
 
 memory = []
