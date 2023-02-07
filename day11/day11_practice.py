@@ -1,4 +1,4 @@
-# 응용 예제 01 - 유명 맛집의 대기줄 구현하기
+# 응용 예제 02 - 콜센터의 응답 대기 시간 계산하기
 def is_queue_empty():
     global waiting, Size, front, rear
     if front == rear:
@@ -9,38 +9,53 @@ def is_queue_empty():
 
 def is_quene_full():
     global waiting, Size, front, rear
-    if rear == Size - 1:
+    if front == (rear+1) % Size:
         return True
     else:
         return False
 
 
+def en_queue(data):
+    global calling, Size, front, rear
+
+    if is_quene_full():
+        return
+    rear = (rear+1) % Size
+    calling[rear] = data
+
+
 def de_queue():
-    global waiting, Size, front, rear
+    global calling, Size, front, rear
 
     if is_queue_empty():
         return
-    front += 1
-    data = waiting[front]
-    waiting[front] = None
-
-    for i in range(front+1, rear+1):
-        waiting[i-1] = waiting[i]
-        waiting[i] = None
-    front = -1
-    rear -= 1
-
+    front = (front+1) % Size
+    data = calling[front]
+    calling[front] = None
     return data
 
 
-waiting = ['정국', '뷔', '지민', '진', '슈가']
-Size = 5
-front = -1
-rear = 4
+def wait_time():
+    global calling, Size, front, rear
+    time = 0
+    for i in range((front+1)%Size, (rear+1)%Size):
+        time = time + calling[i][1]
+    return time
+
+
+
+Size = 6
+calling = [None for _ in range(Size)]
+front = rear = 0
 
 if __name__ == "__main__":
-    print(f"대기 줄 상태 : {waiting}")
-    for j in range(Size):
-        print(f"{de_queue()}님 식당에 들어감")
-        print(f"대기 줄 상태 : {waiting}")
-    print("식당 영업 종료!")
+    waiting = [('사용', 9), ('고장', 3), ('환불', 4), ('환불', 4), ('고장', 3)]
+
+    for call in waiting:
+        print(f"귀하의 대기 예상시간은 {wait_time()} 분입니다.")
+        print(f"현재 대기 콜 --> {calling}")
+        en_queue(call)
+        print()
+
+    print(f"최종 대기 콜 --> {calling}")
+    print("프로그램 종료!")
