@@ -1,44 +1,76 @@
-class Node2():
-    def __init__(self):
-        self.plink = None  # 앞쪽 링크
-        self.data = None
-        self.nlink = None  # 뒤쪽 링크
+def isStackFull():
+    global SIZE, stack, top
+    if (top >= SIZE - 1):
+        return True
+    else:
+        return False
 
 
-def printNodes(start):
-    current = start
-    if current.nlink == None:
+def isStackEmpty():
+    global SIZE, stack, top
+    if (top == -1):
+        return True
+    else:
+        return False
+
+
+def push(data):
+    global SIZE, stack, top
+    if (isStackFull()):
+        print("스택이 꽉 찼습니다.")
         return
-    print("정방향 --> ", end=' ')
-    print(current.data, end=' ')
-    while current.nlink != None:
-        current = current.nlink
-        print(current.data, end=' ')
-    print()
-    print("역방향 --> ", end=' ')
-    print(current.data, end=' ')
-    while current.plink != None:
-        current = current.plink
-        print(current.data, end=' ')
+    top += 1
+    stack[top] = data
 
 
-memory = []
-head, current, pre = None, None, None
-dataArray = ["다현", "정연", "쯔위", "사나", "지효"]
+def pop():
+    global SIZE, stack, top
+    if (isStackEmpty()):
+        print("스택이 비었습니다.")
+        return None
+    data = stack[top]
+    stack[top] = None
+    top -= 1
+    return data
+
+
+def peek():
+    global SIZE, stack, top
+    if (isStackEmpty()):
+        print("스택이 비었습니다.")
+        return None
+    return stack[top]
+
+
+def checkBracket(expr):
+    for ch in expr:
+        if ch in '([{<':
+            push(ch)  # 조건문이 참이면(여는 괄호) stack에 넣음
+        elif ch in ')]}>':
+            out = pop()  # 닫는 괄호면 stack에서 추출
+            if ch == ')' and out == '(':
+                pass
+            elif ch == ']' and out == '[':
+                pass
+            elif ch == '}' and out == '{':
+                pass
+            elif ch == '>' and out == '<':
+                pass
+            else:
+                return False
+        else:
+            pass
+        return isStackEmpty()
+
+
+SIZE = 100
+stack = [None for _ in range(SIZE)]
+top = -1
 
 if __name__ == "__main__":
 
-    node = Node2()  # 첫 번째 노드
-    node.data = dataArray[0]
-    head = node
-    memory.append(node)
+    expression_array = ['(A+B)', ')A+B(', '((A+B)-C', '(A+B]', '(<A+{B-C}/[C*D]>)']
 
-    for data in dataArray[1:]:  # 두 번째 이후 노드
-        pre = node
-        node = Node2()
-        node.data = data
-        pre.nlink = node
-        node.plink = pre
-        memory.append(node)
-
-    printNodes(head)
+    for expr in expression_array:
+        top = -1
+        print(expr, '==>', checkBracket(expr))
