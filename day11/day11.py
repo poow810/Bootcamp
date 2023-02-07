@@ -1,59 +1,103 @@
+import random
+
+
 class TreeNode():
     def __init__(self):
         self.left = None
-        self.right = None
         self.data = None
+        self.right = None
 
 
-node1 = TreeNode()
-node1.data = '화사'
-
-node2 = TreeNode()
-node2.data = '솔라'
-node1.left = node2
-
-node3 = TreeNode()
-node3.data = '문별'
-node1.right = node3
-
-node4 = TreeNode()
-node4.data = '휘인'
-node2.left = node4
-
-node5 = TreeNode()
-node5.data = '쯔위'
-node2.right = node5
-
-node6 = TreeNode()
-node6.data = '선미'
-node3.left = node6
-
-node7 = TreeNode()
-node7.data = '다현'
-node4.right = node7
-
-node8 = TreeNode()
-node8.data = '사나'
-node6.left = node8
 def preorder(node):
-    if node == None:
+    if not node:
         return
-    print(node.data)
+    print(node.data, end='->')
     preorder(node.left)
-    preorder(node.right)        # 전위 순회
+    preorder(node.right)
 
+memory = []
+rootBook, rootAuth = None, None
+bookAry = [['어린왕자', '쌩떽쥐베리'], ['이방인', '까뮈'], ['부활', '톨스토이'],
+           ['신곡', '단테'], ['돈키호테', '세브반테스'], ['동물농장', '조지오웰'],
+           ['데미안', '헤르만헤세'], ['파우스트', '괴테'], ['대지', '펄벅']]
+random.shuffle(bookAry)
 
-def inorder(node):
-    if node == None:
-        return
-    inorder(node.left)
-    print(node.data)
-    inorder(node.right)         # 중위 순회
+node = TreeNode()
+node.data = bookAry[0][0]
+rootBook = node
+memory.append(node)
 
+for book in bookAry[1:]:
+    name = book[0]
+    node = TreeNode()
+    node.data = name
 
-def postorder(node):
-    if node == None:
-        return
-    postorder(node.left)
-    postorder(node.right)
-    print(node.data)            # 후위 순회
+    current = rootBook
+    while True:
+        if name < current.data:
+            if current.left == None:
+                current.left = node
+                break
+            current = current.left
+        else:
+            if current.right == None:
+                current.right = node
+                break
+            current = current.right
+
+    memory.append(node)
+
+print("책 이름 트리 구성 완료!")
+
+node = TreeNode()
+node.data = bookAry[0][1]
+rootAuth = node
+memory.append(node)
+
+for book in bookAry[1:]:
+    name = book[1]
+    node = TreeNode()
+    node.data = name
+
+    current = rootAuth
+    while True:
+        if name < current.data:
+            if current.left == None:
+                current.left = node
+                break
+            current = current.left
+        else:
+            if current.right == None:
+                current.right = node
+                break
+            current = current.right
+
+    memory.append(node)
+
+print("작가 이름 트리 구성 완료!")
+preorder(rootBook)
+## 책 이름 및 작가 이름 검색 ##
+bookOrAuth = int(input('책검색(1), 작가검색(2)-->'))
+findName = input('검색할 책 또는 작가-->')
+
+if bookOrAuth == 1:
+    root = rootBook
+else:
+    root = rootAuth
+
+current = root
+while True:
+    if findName == current.data:
+        print(findName, '을(를) 찾음.')
+        findYN = True
+        break
+    elif findName < current.data:
+        if current.left == None:
+            print(findName, '이(가) 목록에 없음')
+            break
+        current = current.left
+    else:
+        if current.right == None:
+            print(findName, '이(가) 목록에 없음')
+            break
+        current = current.right
