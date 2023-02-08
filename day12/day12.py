@@ -1,18 +1,22 @@
+# 개선된 무방향 그래프
 class Graph:
     def __init__(self, size):
-        self.SIZE = size
+        self.size = size
         self.graph = [[0 for _ in range(size)] for _ in range(size)]
 
+
 G1 = None
+name = ['문별', '솔라', '휘인', '쯔위', '선미', '화사']
 
-G1 = Graph(4)
-G1.graph[0][1] = 1; G1.graph[0][2] = 1; G1.graph[0][3] = 1
-G1.graph[1][0] = 1; G1.graph[1][2] = 1
-G1.graph[2][0] = 1; G1.graph[2][1] = 1; G1.graph[2][3] = 1
-G1.graph[3][0] = 1; G1.graph[3][2] = 1
 
-for row in range(4):
-    for col in range(4):
-        print(G1.graph[row][col], end =' ')
+def print_graph(g):
+    print(' ', end=' ')
+    for i in range(g.size):
+        print(name[i], end=' ')
     print()
-
+    for row in range(g.size):
+        print(name[row], end=' ')
+        for col in range(g.size):
+            print(name[row][col], end=' ')
+        print()
+    print()
