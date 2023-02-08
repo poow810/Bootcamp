@@ -32,7 +32,7 @@ for food in sell[1:]:
     node = TreeNode()
     node.data = food
 
-    current = root
+    current = root      # current로 node를 참조해야 left, right를 사용할 수 있다.
     while True:
         if food == current.data:
             break
