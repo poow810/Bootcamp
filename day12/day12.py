@@ -1,22 +1,22 @@
-# 개선된 무방향 그래프
-class Graph:
-    def __init__(self, size):
-        self.size = size
-        self.graph = [[0 for _ in range(size)] for _ in range(size)]
+# 간선 생성 후 정렬
+from operator import itemgetter
 
+edge_array = []
+for i in range(size):
+    for j in range(size):
+        if G1.graph[i][k] != 0:
+            edge_array.append(G1.graph[i][k], i, k)
+edge_array = sorted(edge_array, key = itemgetter(0), reverse = True)
 
-G1 = None
-name = ['문별', '솔라', '휘인', '쯔위', '선미', '화사']
+# 중복 간선 제거
+new_array = []
+for i in range(0, len(edge_array), 2):
+    new_array.append(edge_array[i])
 
-
-def print_graph(g):
-    print(' ', end=' ')
-    for i in range(g.size):
-        print(name[i], end=' ')
-    print()
-    for row in range(g.size):
-        print(name[row], end=' ')
-        for col in range(g.size):
-            print(name[row][col], end=' ')
-        print()
-    print()
+# 가중치가 높은 간선부터 제거
+index = 0
+start = new_array[index][1]
+end = new_array[index][2]
+G1.graph[start][end] = 0
+G1.graph[end][start] = 0
+del(new_array[index])
