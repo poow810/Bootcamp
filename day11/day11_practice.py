@@ -48,5 +48,5 @@ for food in sell[1:]:
             current = current.right
 
 print('오늘 판매된 종류(중복X)--> ', end='')
-print(inorder(root))
+inorder(root)       # 함수만 불러오면 됨 print x
 
