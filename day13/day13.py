@@ -1,13 +1,16 @@
-# 삽입 정렬 효율적 구현
-def insertion(ary):
+# 중앙값 계산
+def mid_num(ary):
     n = len(ary)
-    for i in range(0,n):
-        for j in range(i, 0, -1):
-            if ary[j-1] < ary[j]:
-                ary[j-1], ary[j] = ary[j], ary[j-1]
+    for i in range(0, n-1):
+        idx = i
+        for j in range(i+1, n):
+            if ary[idx] > ary[j]:
+                idx = j
+        temp = ary[i]
+        ary[i] = ary[idx]
+        ary[idx] = temp
     return ary
 
-array = [15, 14, 17, 20, 66, 99]
 
-new_array = insertion(array)
-print(new_array)
+array = [1, 3, 10, 70, 90, 1000, 4000]
+print(array[len(mid_num(array))//2])
