@@ -1,12 +1,16 @@
-# 피보나치 수
-def fibo(n):
-    if n <= 0:
-        return 0
-    elif n == 1:
-        return 1
-    else:
-        return fibo(n - 1) + fibo(n - 2)
+# 회문 여부 구별
+def palindrome(pstr):
+    if len(pstr) <= 1:
+        return True
+
+    if pstr[0] != pstr[-1]:
+        return False
+
+    return palindrome(pstr[1:len(pstr)-1])  # 양 끝을 판단 후 리스트 크기를
+                                            # 계속 줄여줌
 
 
-for i in range(2, 20):
-    print(fibo(i), end=' ')
+str_array = ['안녕', '메롱메', '살금 살금', '야 너 이번주 주번이 너야']
+for test in str_array:
+    test = test.lower().replace(' ','')
+    print(palindrome(test))
