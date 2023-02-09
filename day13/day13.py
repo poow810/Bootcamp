@@ -1,24 +1,25 @@
-# 중복 값을 고려한 퀵 정렬
-def quick_sort(ary):
-    n = len(ary)
-    if n <= 1:
-        return ary
+# 퀵 정렬의 일반적인 구현
+def quick_sort(ary, start, end):
+    if end <= start:
+        return
+    low = start
+    high = end
 
-    pivot = ary[n//2]
-    left_array, right_array, mid_array = [], [], []
+    pivot = ary[(low+high)//2]
+    while low <= high:
+        while ary[low] < pivot:
+            low += 1
+        while ary[high] > pivot:
+            high -= 1
+        if low <= high:
+            ary[low], ary[high] = ary[high], ary[low]
+            low, high = low +1, high -1
 
-    for num in ary:
-        if num > pivot:
-            right_array.append(num)
-        elif num < pivot:
-            left_array.append(num)
-        else:
-            mid_array.append(num)
-
-    return quick_sort(left_array)+mid_array+quick_sort(right_array)
-# mid_array는 함수로 반환하지 않는 이유?
-# num = pivot 값으로 기준 값이기 때문에 기준이 변하면 안됨
+    mid = low
+    quick_sort(ary, start, mid-1)
+    quick_sort(ary, mid, end)
+    return ary
 
 
-array = [161, 2, 66, 90, 105, 144, 66, 161, 90]
-print(quick_sort(array))
+array = [188, 150, 168, 162, 105, 120, 177, 50]
+print(quick_sort(array, 0, len(array)-1))
