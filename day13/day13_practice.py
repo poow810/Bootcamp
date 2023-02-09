@@ -1,57 +1,28 @@
-# 응용 예제 1 - 선택 정렬과 퀵 정렬의 성능 비교하기
+# 응용 예제 2 - 이미 정렬된 줄에 끼어들기
+# 이미 데이터가 정렬되어 있다면 버블 정렬이 효과적
 import random
 import time
 
 
-def selection(ary):
+def bubble(ary):
     n = len(ary)
-    for i in range(0, n-1):
-        idx = i
-        for j in range(i+1, n):
-            if ary[idx] > ary[j]:
-                idx = j
-        temp = ary[i]
-        ary[i] = ary[idx]
-        ary[idx] = temp
+    for i in range(n-1, 0, -1):
+        changeYN = False
+        for j in range(0, i):
+            if ary[j] > ary[j+1]:
+                ary[j], ary[j+1] = ary[j+1], ary[j]
+                changeYN = True
+        if not changeYN:
+            break
     return ary
 
 
-def quick_sort(ary, start, end):
-    if start >= end:
-        return
-    low = start
-    high = end
+array = [random.randint(0,10000) for _ in range(100000)]
+array.sort()
 
-    pivot = ary[(low+high)//2]
-    while low <= high:
-        while ary[low] < pivot:
-            low += 1
-        while ary[high] > pivot:
-            high -= 1
-        if low <= high:
-            ary[low], ary[high] = ary[high], ary[low]
-            low, high = low+1, high - 1
-
-    mid = low
-    quick_sort(ary, start, mid-1)
-    quick_sort(ary, mid, end)
-
-
-count_array = [1000, 10000, 12000, 15000]
-for i in count_array:
-    temp = [random.randint(1,15000) for _ in range(i)]
-    select = temp[:]
-    quick = temp[:]
-
-    print(f"## 데이터 수 --> {i}")
-    start = time.time()
-    selection(count_array)
-    end = time.time()
-    print(f"선택 정렬 --> {end-start:.3f}")
-    start = time.time()
-    quick_sort(count_array, 0, len(count_array)-1)
-    end = time.time()
-    print(f"퀵 정렬 --> {end-start:.3f}")
-
-    i *= 5
-
+ranidx = random.randint(0, len(array)-1)
+array.insert(ranidx, array[-1])
+start = time.time()
+bubble(array)
+end = time.time()
+print(f"버블 정렬이 걸린 시간 : {end-start}")
