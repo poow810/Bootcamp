@@ -42,7 +42,7 @@ win.geometry("250x150")
 en_num_input = tk.Entry()
 lbl_results = tk.Label(text="계산기 출력 결과 :")  # 레이블, 계산 결과 출력용
 btn_fact = tk.Button(text="팩토리얼", command = factorial_input)   # 팩토리얼 버튼, 이벤트 발생
-btn_fibo = tk.Button(text="피보나치", command = fibonacci_input) # 피보나치 버튼, 이벤트 발생
+btn_fibo = tk.Button(text="피보나치", command = fibonacci_input)   # 피보나치 버튼, 이벤트 발생
 
 en_num_input.pack()
 lbl_results.pack()
