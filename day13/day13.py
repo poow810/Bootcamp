@@ -1,27 +1,25 @@
 import random
+# 재귀 함수를 통한 숫자 합계 내기
+def add_number(num):
+    if num <= 1:
+        return 1
+    return num+add_number(num-1)
+
+# 팩토리얼을 재귀 함수로 구현
+def factorial(num):
+    if num <= 1:
+        return 1
+    return num*factorial(num-1)
 
 
-def quickSort(ary):
-    global count
-    n = len(ary)
-    if n <= 1:  # 정렬할 리스트의 개수가 1개 이하면
-        return ary
+# 배열의 합 계산하기
+def array_sum(arr, n):
+    if n <= 0:
+        return arr[0]
+    return arr[n]+array_sum(arr, n-1)
 
-    pivot = ary[n // 2]  # 기준값을 중간값으로 지정
-    leftAry, rightAry = [], []
 
-    for num in ary:
-        if num < pivot:
-            leftAry.append(num)
-        elif num > pivot:
-            rightAry.append(num)
-    count += 1
-    return quickSort(leftAry) + [pivot] + quickSort(rightAry)
+array = [random.randint(0, 255) for _ in range(10)]
+print(array)
+print(array_sum(array, len(array)-1))
 
-count = 0
-dataAry = [random.randint(0, 200) for _ in range(20)]
-
-print('정렬 전 -->', dataAry)
-dataAry = quickSort(dataAry)
-print('정렬 후 -->', dataAry)
-print(count)
