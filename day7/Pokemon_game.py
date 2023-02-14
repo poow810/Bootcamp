@@ -87,6 +87,7 @@ while True:
         info_attack = input('1) 정보 조회 2) 공격 : ')
         if info_attack == '1':
             p.info()
+
         elif info_attack == '2':
             p.info()
             attack_menu = input('공격 번호 선택 : ')
