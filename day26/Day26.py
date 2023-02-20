@@ -1,8 +1,15 @@
+import random
+
+import numpy as np
+
+
 def find_index(ary, data):
+    global count
     pos = -1
     start = 0
     end = len(ary)-1
     while end >= start:
+        count = count + 1
         mid = (start+end)//2
         if data == ary[mid]:
             return mid
@@ -10,14 +17,18 @@ def find_index(ary, data):
             start = mid + 1
         else:
             end = mid + 1
+    return pos
 
 
+data_array = np.random.randint(0, 100000, 100000)
+data_array.sort()
+find_data = np.random.randint(100000)
+count = 0
 
-data_array = [188, 150, 168, 162, 105, 120, 177, 50]
-find_data = int(input())
-data_array = sorted(data_array)
 position = find_index(data_array, find_data)
 if position == -1:
     print("찾는 data가 data_array에 없음")
+    print(f"{count}회 검색함")
 else:
     print(f"찾는 data가 {position}에 있음")
+    print(f"{count}회 검색함")
