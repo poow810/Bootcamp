@@ -1,40 +1,43 @@
 import random
 
 
-def find_index(ary, data):
+def sequence_find(ary, data):
+    global count
+    pos = -1
+    for i in range(len(ary)):
+        count += 1
+        if ary[i] == data:
+            pos = i
+            break
+    return pos
+
+
+def bin_find(ary, data):
+    global count
     start = 0
     end = len(ary)-1
     while start <= end:
+        count += 1
         mid = (start+end)//2
         if ary[mid] == data:
             return mid
-        elif ary[mid] > data:
+        elif ary[mid] >= data:
             end = mid - 1
         else:
             start = mid + 1
     return -1
 
 
-menu = ['바나나맛우유', '레쓰비 캔커피', '츄파춥스', '도시락', '삼다수', '코카콜라', '삼각김밥']
-sell = [random.choice(menu) for i in range(20)]
-count_list = []
+count = 0
+data_list = [random.randint(0, 1000000) for i in range(1000000)]
+data_sort = sorted(data_list)
+find_data = 50
 
-print(f"오늘 판매된 전체 물건 --> {sell}")
-sell.sort()
-print(f"오늘 판매된 전체 물건 --> {sell}")
-sell_list = list(set(sell))
-print(f"오늘 판매된 전체 물건 종류--> {sell}")
+sequence = sequence_find(data_list, find_data)
+if sequence != -1:
+    print(f"순차 검색 --> {count}회")
 
-for product in sell_list:
-    count = 0
-    pos = 0
-    while True:
-        pos = find_index(sell, product)
-        if pos != -1:
-            count+=1
-            del(sell[pos])
-        else:
-            break
-    count_list.append((product, count))
-
-print(count_list)
+count = 0
+bin = bin_find(data_sort, find_data)
+if bin != -1:
+    print(f"이진 검색 --> {count}회")
